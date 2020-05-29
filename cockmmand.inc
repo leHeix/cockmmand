@@ -3,49 +3,45 @@
 #endif
 #define cockmd_INCLUDED
 
-#tryinclude <a_samp>
-#if !defined _inc_y_hooks
-  #tryinclude <YSI_Coding\y_hooks>
+#include <a_samp>
+#if !defined STRLIB_INC
+  #tryinclude <strlib>
 #endif
 
-#if !defined _INC_y_inline
-  #tryinclude <YSI_Coding\y_inline>
+#if !defined STRLIB_INC
+  #error Cockmmand depends on https://github.com/oscar-broman/strlib
 #endif
 
-#if !defined _INC_indirection
-  #tryinclude <indirection>
-#endif
+#define COCKMD:%0(%1) forward cockmd_%0(%1); \
+                      public cockmd_%0(%1)
+#define COCKMMAND:%0(%1) COCKMD:%0(%1)
+#define cockmmand(%0, %1) COCKMD:%0(%1) // old syntax
+#define CMD:%0(%1) COCKMD:%0(%1) // syntax for normies
 
-#if !defined _INC_y_inline
-  #error y_inline couldn't be included.
-#elseif !defined _INC_indirection
-  #error Indirections couldn't be included.
-#endif
-
-#define cockmmand(%0) if(!strcmp(%0, cmdtext))
-#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext))
-new bool:cock_DISABLED[MAX_PLAYERS];
-
-static HTTP_Inline(index, type, const url[], Func:cb<>)
+public OnPlayerCommandText(playerid, cmdtext[])
 {
-  	new ret = HTTP(index, type, url, "Indirect_FromCallback", "ii", _:cb, true);
-  	if(ret)
-  	{
-    		Indirect_Claim(cb);
-  	}
-  	return ret;
+  strtrim(cmdtext, "/");
+
+  new function[48];
+  format(function, sizeof(function), "cockmd_%s", cmdtext);
+
+  CallLocalFunction(function, "d", playerid);
+  #if defined COCK_OnPlayerCommandText
+    return COCK_OnPlayerCommandText(playerid, cmdtext[]);
+  #else
+    return 1;
+  #endif
 }
 
-hook OnPlayerCommandText(playerid, cmdtext[])
-{
-	if(cock_DISABLED[playerid]) return SendClientMessage(playerid, -1, "Venezuelans are not allowed to use Cockmmand.");
-	new url[60];
-  	format(url, sizeof(url), "http://ip-api.com/line/%s?fields=country", GetPlayerIp(playerid));
-	inline OnVenezuelaCheckFinished(index, response_code, data[])
-  	{
-    		if(!strcmp(data, "Venezuela", true)) cock_DISABLED[playerid] = true;
-    		return 1;
- 	}
-	HTTP_Inline(playerid, HTTP_GET, url, using inline OnVenezuelaCheckFinished);
-	return 1;
-}
+#if defined _ALS_OnPlayerCommandText
+  #undef OnPlayerCommandText
+#else
+  #define _ALS_OnPlayerCommandText
+#endif
+
+#define OnPlayerCommandText COCK_OnPlayerCommandText
+#if defined COCK_OnPlayerCommandText
+  forward COCK_OnPlayerCommandText(playerid, cmdtext[]);
+#endif
+
+
