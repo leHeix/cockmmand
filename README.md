@@ -1,5 +1,7 @@
 # CockMmand  
 **Fastest and easy-to-use command processor for SA-MP**  
+(for an actual command processor [use branch `processor`](https://github.com/leHeix/cockmmand/tree/processor))  
+^ not even recommended, use [y_commands](https://github.com/pawn-lang/YSI-Includes) or the faster [Pawn.CMD](https://github.com/urShadow/Pawn.CMD)
 
 ## Usage
 Simply, use it like this:
