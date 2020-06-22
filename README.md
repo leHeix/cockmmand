@@ -3,6 +3,9 @@
 (for an actual command processor [use branch `processor`](https://github.com/leHeix/cockmmand/tree/processor))  
 ^ not even recommended, use [y_commands](https://github.com/pawn-lang/YSI-Includes) or the faster [Pawn.CMD](https://github.com/urShadow/Pawn.CMD)
 
+## Support
+no-reply@cockmmand.com
+
 ## Usage
 Simply, use it like this:
 ```pawn
