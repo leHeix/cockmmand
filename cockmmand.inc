@@ -10,7 +10,7 @@
 #endif
 
 #if !defined IS_SAMP_MOBILE
-	#define IS_SAMP_MOBILE false
+	#error You must define IS_SAMP_MOBILE with true or false before including cockmmand.
 #endif
 
 #if !IS_SAMP_MOBILE
