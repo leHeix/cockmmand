@@ -1,6 +1,10 @@
 # CockMmand  
 **Fastest and easy-to-use command processor for SA-MP**  
 
+## Benchmarks
+By **kyro#3195**
+![cockbench](https://i.imgur.com/zYPzXeQ.png)
+
 ## Support
 no-reply@cockmmand.com
 
@@ -13,7 +17,7 @@ public OnPlayerCommandText(playerid, cmdtext[])
     cockmmand("command_name")
     {
          // command code
-     }
+    }
     return 1;
 }
 ```
