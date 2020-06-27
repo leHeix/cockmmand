@@ -9,10 +9,18 @@
 	#define COCK_CASE_SENSITIVE true
 #endif
 
-#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
-#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+#if !defined IS_SAMP_MOBILE
+	#define IS_SAMP_MOBILE false
+#endif
 
-stock GetCockmmandVersion()
-{
-	return COCKMMAND_VERSION;
-}
+#if !IS_SAMP_MOBILE
+	#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+	#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+
+	stock GetCockmmandVersion()
+	{
+		return COCKMMAND_VERSION;
+	}
+#else
+	#error Cockmmand no support samp mobile please pull request cockmmand to compatible
+#endif
