@@ -2,7 +2,7 @@
 **Fastest and easy-to-use command processor for SA-MP**  
 
 ## Benchmarks
-By **kyro#3195**
+By **kyro#9315**
 ![cockbench](https://i.imgur.com/zYPzXeQ.png)
 
 ## Support
