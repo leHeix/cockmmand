@@ -22,5 +22,49 @@
 		return COCKMMAND_VERSION;
 	}
 #else
-	#error Cockmmand no support samp mobile please pull request cockmmand to compatible
+	#if defined FILTERSCRIPT
+		public OnFilterScriptInit()
+	#else
+		public OnGameModeInit()
+		{
+			print("cockmmand no compatible with samp mobile");
+			SendRconCommand("exit");
+			
+			#if defined FILTERSCRIPT
+				#if defined COCK_OnFilterScriptInit
+					return COCK_OnFilterScriptInit();
+				#else
+					return 1;
+				#endif
+			#else
+				#if defined COCK_OnGameModeInit
+					return COCK_OnGameModeInit();
+				#else
+					return 1;
+				#endif
+			#endif
+		}
+	#endif
+	
+	#if defined FILTERSCRIPT
+		#if defined _ALS_OnFilterScriptInit
+			#undef OnFilterScriptInit
+		#else
+			#define _ALS_OnFilterScriptInit
+		#endif
+		#define OnFilterScriptInit COCK_OnFilterScriptInit
+		#if defined COCK_OnFilterScriptInit
+			forward COCK_OnFilterScriptInit();
+		#endif
+	#else
+		#if defined _ALS_OnGameModeInit
+			#undef OnGameModeInit
+		#else
+			#define _ALS_OnGameModeInit
+		#endif
+		#define OnGameModeInit COCK_OnGameModeInit
+		#if defined COCK_OnGameModeInit
+			forward COCK_OnGameModeInit();
+		#endif
+	#endif
 #endif
