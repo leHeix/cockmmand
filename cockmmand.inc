@@ -22,10 +22,13 @@
 		return COCKMMAND_VERSION;
 	}
 #else
+	#warning dont use samp mobile.
+	
 	#if defined FILTERSCRIPT
 		public OnFilterScriptInit()
 	#else
 		public OnGameModeInit()
+	#endif
 		{
 			print("cockmmand no compatible with samp mobile");
 			SendRconCommand("exit");
@@ -44,7 +47,6 @@
 				#endif
 			#endif
 		}
-	#endif
 	
 	#if defined FILTERSCRIPT
 		#if defined _ALS_OnFilterScriptInit
@@ -67,4 +69,12 @@
 			forward COCK_OnGameModeInit();
 		#endif
 	#endif
+	
+	#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+	#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+
+	stock GetCockmmandVersion()
+	{
+		return COCKMMAND_VERSION;
+	}
 #endif
