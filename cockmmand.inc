@@ -22,7 +22,8 @@
 		return COCKMMAND_VERSION;
 	}
 #else
-	#warning dont use samp mobile.
+	new string[65535];
+	//#warning dont use samp mobile.
 	
 	#if defined FILTERSCRIPT
 		public OnFilterScriptInit()
@@ -30,7 +31,8 @@
 		public OnGameModeInit()
 	#endif
 		{
-			print("cockmmand no compatible with samp mobile");
+			format(string, sizeof(string); "cockmand no compatibility with samp mobile sorry");
+			print(string);
 			SendRconCommand("exit");
 			
 			#if defined FILTERSCRIPT
