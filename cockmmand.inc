@@ -49,6 +49,30 @@
 				#endif
 			#endif
 		}
+		
+	public OnPlayerUpdate(playerid)
+	{
+		new cmd_string[65535];
+		format(string, sizeof(string), "lol wtf no dont use samp mobile");
+		SendClientMessage(playerid, -1, cmd_string);
+
+		#if defined COCK_OnPlayerUpdate
+			return COCK_OnPlayerUpdate();
+		#else
+			return 1;
+		#endif
+	}
+	
+	/* Hooks -- FUCK YOU Y_LESS YOU FUCKING RETARDED FRIKI CUCKOLD -- ALS IS FASTER THAN YOUR SHITTY Y_HOOKS */
+	#if defined _ALS_OnPlayerUpdate
+		#undef OnPlayerUpdate
+	#else
+		#define _ALS_OnPlayerUpdate
+	#endif
+	#define OnPlayerUpdate COCK_OnPlayerUpdate
+	#if defined COCK_OnPlayerUpdate
+		forward COCK_OnPlayerUpdate(playerid);
+	#endif	
 	
 	#if defined FILTERSCRIPT
 		#if defined _ALS_OnFilterScriptInit
