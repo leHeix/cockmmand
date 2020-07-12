@@ -31,7 +31,7 @@
 		public OnGameModeInit()
 	#endif
 		{
-			format(string, sizeof(string); "cockmand no compatibility with samp mobile sorry");
+			format(string, sizeof(string); "cockmmand no compatibility with samp mobile sorry");
 			print(string);
 			SendRconCommand("exit");
 			
