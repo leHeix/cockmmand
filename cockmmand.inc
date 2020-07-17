@@ -3,144 +3,58 @@
 #endif
 #define _inc_cockmmand
 
-#define COCKMMAND_VERSION	"1.0"
+#define COCKMMAND_VERSION	"2.0"
 
 #if !defined COCK_CASE_SENSITIVE
 	#define COCK_CASE_SENSITIVE true
 #endif
 
-#if !defined COCK_IS_SAMP_MOBILE
-	#warning You must define IS_SAMP_MOBILE with true or false before including cockmmand. Default is set to false but this is STRONGLY recommended
-	#define COCK_IS_SAMP_MOBILE false
-#endif
+static cock_commands_count = 0;
 
-#if !COCK_IS_SAMP_MOBILE
-	stock GetCockmmandVersion()
-	{
-		return COCKMMAND_VERSION;
-	}
-	
-	stock COCK_PreInit()
-	{
-		#if defined cockmmand
-			print("CockMmand ran into an exception. Errors? No. Exiting...);
-			SendRconCommand("exit");
-		#endif
-		
-		return 1;
-	}
-	
-	#if defined FILTERSCRIPT
-		public OnFilterScriptInit()
-	#else
-		public OnGameModeInit()
-	#endif
-		{
-			COCK_PreInit();
-			
-			#if defined FILTERSCRIPT
-				#if defined COCK_OnFilterScriptInit
-					return COCK_OnFilterScriptInit();
-				#else
-					return 1;
-				#endif
-			#else
-				#if defined COCK_OnGameModeInit
-					return COCK_OnGameModeInit();
-				#else
-					return 1;
-				#endif
-			#endif
-		}
-	
-	forward COCK_Init();
-	
-	#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
-	#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
-	#define COCKCMD:%0 cockmmand(%0)
-#else
-	new string[65535];
-	//#warning dont use samp mobile.
-	
-	#if defined FILTERSCRIPT
-		public OnFilterScriptInit()
-	#else
-		public OnGameModeInit()
-	#endif
-		{
-			format(string, sizeof(string); "cockmand no compatibility with samp mobile sorry");
-			print(string);
-			SendRconCommand("exit");
-			
-			#if defined FILTERSCRIPT
-				#if defined COCK_OnFilterScriptInit
-					return COCK_OnFilterScriptInit();
-				#else
-					return 1;
-				#endif
-			#else
-				#if defined COCK_OnGameModeInit
-					return COCK_OnGameModeInit();
-				#else
-					return 1;
-				#endif
-			#endif
-		}
-		
-	public OnPlayerUpdate(playerid)
-	{
-		new cmd_string[65535];
-		format(string, sizeof(string), "lol wtf no dont use samp mobile");
-		SendClientMessage(playerid, -1, cmd_string);
+forward COCK_Init(command_count);
 
-		#if defined COCK_OnPlayerUpdate
-			return COCK_OnPlayerUpdate();
-		#else
-			return 1;
-		#endif
-	}
-	
-	/* Hooks -- FUCK YOU Y_LESS YOU FUCKING RETARDED FRIKI CUCKOLD -- ALS IS FASTER THAN YOUR SHITTY Y_HOOKS */
-	#if defined _ALS_OnPlayerUpdate
-		#undef OnPlayerUpdate
-	#else
-		#define _ALS_OnPlayerUpdate
-	#endif
-	#define OnPlayerUpdate COCK_OnPlayerUpdate
-	#if defined COCK_OnPlayerUpdate
-		forward COCK_OnPlayerUpdate(playerid);
-	#endif	
-	
-	forward COCK_Init();
-	
-	#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
-	#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
-	#define COCKCMD:%0 cockmmand(%0)
+stock GetCockmmandVersion()
+{
+	return COCKMMAND_VERSION;
+}
 
-	stock GetCockmmandVersion()
-	{
-		return COCKMMAND_VERSION;
-	}
-#endif
+static COCK_PreInit()
+{
+	#if defined cockmmand
+		print("CockMmand ran into an exception. Errors? No. Exiting...);
+		SendRconCommand("exit");
+	#endif
+
+	return 1;
+}
 
 #if defined FILTERSCRIPT
-	#if defined _ALS_OnFilterScriptInit
-		#undef OnFilterScriptInit
-	#else
-		#define _ALS_OnFilterScriptInit
-	#endif
-	#define OnFilterScriptInit COCK_OnFilterScriptInit
-	#if defined COCK_OnFilterScriptInit
-		forward COCK_OnFilterScriptInit();
-	#endif
+	public OnFilterScriptInit()
 #else
-	#if defined _ALS_OnGameModeInit
-		#undef OnGameModeInit
-	#else
-		#define _ALS_OnGameModeInit
-	#endif
-	#define OnGameModeInit COCK_OnGameModeInit
-	#if defined COCK_OnGameModeInit
-		forward COCK_OnGameModeInit();
-	#endif
+	public OnGameModeInit()
 #endif
+	{
+		COCK_PreInit();
+		
+		#if defined COCK_Init
+			COCK_Init(cock_commands_count);
+		#endif
+
+		#if defined FILTERSCRIPT
+			#if defined COCK_OnFilterScriptInit
+				return COCK_OnFilterScriptInit();
+			#else
+				return 1;
+			#endif
+		#else
+			#if defined COCK_OnGameModeInit
+				return COCK_OnGameModeInit();
+			#else
+				return 1;
+			#endif
+		#endif
+	}
+
+#define cockmmand(%0) cock_commands_count++; if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+#define cockmmand_multiple(%0) else if(cock_commands_count++ != 1 && !strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+#define COCKCMD:%0 cockmmand(%0)
