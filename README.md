@@ -11,8 +11,13 @@ no-reply@cockmmand.com
 ## Usage
 Simply, use it like this:
 ```pawn
-#define IS_SAMP_MOBILE false // true if your server is compatible
 #include <cockmmand>
+public COCK_Init(command_count)
+{
+    printf("We have %d commands!", command_count);
+    return 1;
+}
+
 public OnPlayerCommandText(playerid, cmdtext[])
 {
     cockmmand("command_name")
@@ -24,11 +29,16 @@ public OnPlayerCommandText(playerid, cmdtext[])
 ```
 To add more than one command, we made simple optimization, use:
 ```pawn
-#define IS_SAMP_MOBILE false // true if your server is compatible
 #include <cockmmand>
+public COCK_Init(command_count)
+{
+    printf("We have %d commands!", command_count);
+    return 1;
+}
+
 public OnPlayerCommandText(playerid, cmdtext[])
 {
-    cockmmand("command_name")
+    COCKCMD:command
     {
         // command code
     }
