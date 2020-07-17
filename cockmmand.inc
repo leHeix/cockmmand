@@ -17,6 +17,7 @@
 #if !COCK_IS_SAMP_MOBILE
 	#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
 	#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+	#define COCKCMD:%0 cockmmand(%0)
 
 	stock GetCockmmandVersion()
 	{
@@ -99,6 +100,7 @@
 	
 	#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
 	#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+	#define COCKCMD:%0 cockmmand(%0)
 
 	stock GetCockmmandVersion()
 	{
