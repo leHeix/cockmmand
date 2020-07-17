@@ -9,11 +9,12 @@
 	#define COCK_CASE_SENSITIVE true
 #endif
 
-#if !defined IS_SAMP_MOBILE
-	#error You must define IS_SAMP_MOBILE with true or false before including cockmmand.
+#if !defined COCK_IS_SAMP_MOBILE
+	#warning You must define IS_SAMP_MOBILE with true or false before including cockmmand. Default is set to false but this is STRONGLY recommended
+	#define COCK_IS_SAMP_MOBILE false
 #endif
 
-#if !IS_SAMP_MOBILE
+#if !COCK_IS_SAMP_MOBILE
 	#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
 	#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
 
