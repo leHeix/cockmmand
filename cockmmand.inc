@@ -9,7 +9,7 @@
 	#define COCK_CASE_SENSITIVE true
 #endif
 
-static cock_commands_count = 0;
+new cock_commands_count = 0;
 
 forward COCK_Init(command_count);
 
