@@ -58,3 +58,25 @@ static COCK_PreInit()
 #define cockmmand(%0) cock_commands_count++; if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
 #define cockmmand_multiple(%0) else if(cock_commands_count++ != 1 && !strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
 #define COCKCMD:%0 cockmmand(%0)
+
+#if defined FILTERSCRIPT
+	#if defined _ALS_OnFilterScriptInit
+		#undef OnFilterScriptInit
+	#else
+		#define _ALS_OnFilterScriptInit
+	#endif
+	#define OnFilterScriptInit COCK_OnFilterScriptInit
+	#if defined COCK_OnFilterScriptInit
+		forward COCK_OnFilterScriptInit();
+	#endif
+#else
+	#if defined _ALS_OnGameModeInit
+		#undef OnGameModeInit
+	#else
+		#define _ALS_OnGameModeInit
+	#endif
+	#define OnGameModeInit COCK_OnGameModeInit
+	#if defined COCK_OnGameModeInit
+		forward COCK_OnGameModeInit();
+	#endif
+#endif
