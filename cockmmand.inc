@@ -3,15 +3,13 @@
 #endif
 #define _inc_cockmmand
 
-#define COCKMMAND_VERSION	"2.0"
+#define COCKMMAND_VERSION	"2.0-fart"
 
 #if !defined COCK_CASE_SENSITIVE
 	#define COCK_CASE_SENSITIVE true
 #endif
 
-new cock_commands_count = 0;
-
-forward COCK_Init(command_count);
+forward COCK_Init();
 
 stock GetCockmmandVersion()
 {
@@ -37,7 +35,7 @@ static COCK_PreInit()
 		COCK_PreInit();
 		
 		#if defined COCK_Init
-			COCK_Init(cock_commands_count);
+			COCK_Init();
 		#endif
 
 		#if defined FILTERSCRIPT
@@ -55,8 +53,8 @@ static COCK_PreInit()
 		#endif
 	}
 
-#define cockmmand(%0) cock_commands_count++; if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
-#define cockmmand_multiple(%0) else if(cock_commands_count++ != 1 && !strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+#define cockmmand(%0) if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
+#define cockmmand_multiple(%0) else if(!strcmp(%0, cmdtext, COCK_CASE_SENSITIVE))
 #define COCKCMD:%0 cockmmand(%0)
 
 #if defined FILTERSCRIPT
