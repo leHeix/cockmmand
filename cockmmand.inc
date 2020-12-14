@@ -19,7 +19,7 @@ stock GetCockmmandVersion()
 static COCK_PreInit()
 {
 	#if defined cockmmand
-		print("CockMmand ran into an exception. Errors? No. Exiting...);
+		print("CockMmand ran into an exception. Errors? No. Exiting...");
 		SendRconCommand("exit");
 	#endif
 
