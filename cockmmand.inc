@@ -3,7 +3,7 @@
 #endif
 #define _inc_cockmmand
 
-#define COCKMMAND_VERSION	"2.0-fart"
+stock const g_szCockmmandVersion[] = "2.0-fart";
 
 #if !defined COCK_CASE_SENSITIVE
 	#define COCK_CASE_SENSITIVE true
@@ -11,7 +11,11 @@
 
 forward COCK_Init();
 
+#if __Pawn >= 0x400
+stock GetCockmmandVersion[sizeof(g_szCockmmandVersion)]()
+#else
 stock GetCockmmandVersion()
+#endif
 {
 	return COCKMMAND_VERSION;
 }
