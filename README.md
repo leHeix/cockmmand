@@ -12,11 +12,6 @@ no-reply@cockmmand.com
 Simply, use it like this:
 ```pawn
 #include <cockmmand>
-public COCK_Init(command_count)
-{
-    printf("We have %d commands!", command_count);
-    return 1;
-}
 
 public OnPlayerCommandText(playerid, cmdtext[])
 {
@@ -30,15 +25,10 @@ public OnPlayerCommandText(playerid, cmdtext[])
 To add more than one command, we made simple optimization, use:
 ```pawn
 #include <cockmmand>
-public COCK_Init(command_count)
-{
-    printf("We have %d commands!", command_count);
-    return 1;
-}
 
 public OnPlayerCommandText(playerid, cmdtext[])
 {
-    COCKCMD:command
+    cockmmand("command")
     {
         // command code
     }
@@ -57,5 +47,5 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
 ## Installation  
 - Download **cockmmand.inc** from branch `master`
-- Place in `serverroot/pawno/include`. Final path should look like this: `serverroot/pawno/include/cockmmand.inc`.
+- Place in `<path_to_include_folder>/include`. Final path should look like this: `<path_to_include_folder>/cockmmand.inc`.
 - Profit!
