@@ -1,5 +1,6 @@
 # CockMmand  
-**Fastest and easy-to-use command processor for SA-MP**  
+Unleash the full potential of the cock, **NOW**!  
+Cockmmand offers the super cock-shenanigans (shenanicocks, yeah!) to trick the SA-MP server to use SUPER-DOOPER-FAST COMMANDS!! And not only that, it also uses all of the COCK POWER!
 
 ## Benchmarks
 By **kyro#9315**
